@@ -128,7 +128,6 @@ const App = () => {
       <div style="color: #64ffda; margin-bottom: 10px; font-size: 14px;">🚀 DevOps & Professional</div>
       <div style="margin-left: 20px; display: grid; gap: 8px;">
         <div><span class="success" style="display: inline-block; width: 100px;">docker ps</span> - Show running containers (skills)</div>
-        <div><span class="success" style="display: inline-block; width: 100px;">certs</span> - Show professional certifications</div>
       </div>
     </div>
     
@@ -195,21 +194,7 @@ const App = () => {
           'component'
         );
       },
-      certs: () => {
-        addToHistory(
-          <>
-            <div className="project-card">
-              <span className="cert-badge">Google Cloud Certified - Cloud Digital Leader</span>
-              <span style={{ color: '#8892b0', fontSize: '12px', marginLeft: '10px' }}>(Valid: Jan 2023 - Jan 2026)</span>
-            </div>
-            <div className="project-card">
-              <span className="cert-badge">Oracle Cloud Infrastructure 2023 - Architect Associate</span>
-              <span style={{ color: '#8892b0', fontSize: '12px', marginLeft: '10px' }}>(Valid: Aug 2023 - Aug 2025)</span>
-            </div>
-          </>,
-          'component'
-        );
-      },
+
       github: () => {
         window.open('https://github.com/Sai9700128', '_blank');
         addToHistory('Opening GitHub profile in new tab...', 'success');
@@ -367,7 +352,7 @@ const App = () => {
       } else if (targetDir === 'pipeline') {
         addToHistory('Loading CI/CD Pipeline Visualization...', 'success');
         addToHistory(<Pipeline />, 'component');
-      } else if (targetDir === 'certifications' || targetDir === 'certs') {
+      } else if (targetDir === 'certifications') {
         addToHistory(
           <>
             <div className="project-card">
@@ -496,7 +481,7 @@ const App = () => {
     if (e.key === 'Tab') {
       e.preventDefault();
       const currentValue = inputValue.toLowerCase();
-      const availableCommands = ['help', 'whoami', 'ls', 'pwd', 'docker ps', 'certs', 'github', 'linkedin', 'clear', 'sudo'];
+      const availableCommands = ['help', 'whoami', 'ls', 'pwd', 'docker ps', 'github', 'linkedin', 'clear', 'sudo'];
       const availableDirs = ['projects', 'skills', 'experience', 'education', 'contact', 'pipeline', 'certifications', 'strengths', 'weaknesses'];
 
       // Handle ls command tab completion
