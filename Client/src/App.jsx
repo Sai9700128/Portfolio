@@ -1,4 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
+import ASCIIArt from './components/ASCIIArt';
+import { experience } from './components/experience';
+import { education } from './components/education';
+import { projects } from './components/projects';
+import { skills } from './components/skills';
+import ContactInfo from './components/contactInfo';
+import { SkillBar } from './components/SkillBar';
+
 
 // Import the CSS file
 import './App.css';
@@ -696,19 +704,7 @@ const TerminalBody = React.forwardRef(({ children }, ref) => (
   </div>
 ));
 
-const ASCIIArt = () => (
-  <pre className="ascii-art">
-    {`   _____ ___    ____   __ __ ___    __   __ ___    _   _ 
-  / ___// _ |  /  _/  / //_// _ |  / /   \\ \\/ / _ |  / | / /
-  \\__ \\/ __ | _/ /   / ,< / __ | / /__   \\  / __ | /  |/ / 
- /___/_/ |_|/___/   /_/|_/_/ |_|/____/   /_/ / |_|/_/|_/  
-     ____  _______    _______ ____ _____                  
-    / __ \\/ ____/ |  / / __ \\/ __ ) ___/                  
-   / / / / __/  | | / / / / / /_/ /\\__ \\                  
-  / /_/ / /___  | |/ / /_/ / ____/___/ /                  
- /_____/_____/  |___/\\____/_/    /____/                   `}
-  </pre>
-);
+
 
 const OutputLine = ({ prompt, command }) => (
   <div className="output-line">
@@ -739,23 +735,7 @@ const ProjectCard = ({ project }) => (
   </div>
 );
 
-const SkillBar = ({ skill }) => (
-  <div className="project-card">
-    <div className="highlight">{skill.category}</div>
-    <div>
-      <span className="success">{skill.name}</span>
-      <span style={{ float: 'right' }}>{skill.visualBar} {skill.percentage}%</span>
-    </div>
-    <div className="skill-bar">
-      <div className="skill-progress" style={{ width: `${skill.percentage}%` }}></div>
-    </div>
-    {skill.details && (
-      <div style={{ fontSize: '12px', color: '#8892b0', marginTop: '5px' }}>
-        {skill.details}
-      </div>
-    )}
-  </div>
-);
+
 
 const Pipeline = () => (
   <div className="pipeline-section">
@@ -786,164 +766,5 @@ const Pipeline = () => (
     </div>
   </div>
 );
-
-const ContactInfo = () => (
-  <div className="project-card">
-    <div className="contact-grid">
-      <div className="contact-item">
-        📧 <a href="mailto:burra.sa@northeastern.edu" style={{ color: 'inherit', textDecoration: 'none' }}>
-          burra.sa@northeastern.edu
-        </a>
-      </div><br />
-      <div className="contact-item"> 📱 (857) 339-8482</div>
-      <div className="contact-item">
-        💼 <a href="https://www.linkedin.com/in/b-sai-kalyan-a14816221/" target="_blank" rel="noopener noreferrer"
-          style={{ color: 'inherit', textDecoration: 'none' }}>LinkedIn</a>
-      </div>
-      <div className="contact-item">
-        🐙 <a href="https://github.com/Sai9700128" target="_blank" rel="noopener noreferrer"
-          style={{ color: 'inherit', textDecoration: 'none' }}>GitHub</a>
-      </div>
-      <div className="contact-item">
-        📝 <a href="https://medium.com/@saikalyan.burra" target="_blank" rel="noopener noreferrer"
-          style={{ color: 'inherit', textDecoration: 'none' }}>Medium</a>
-      </div>
-      <div className="contact-item">📍 Boston, MA</div>
-    </div>
-  </div>
-);
-
-// Data arrays
-const projects = [
-  {
-    id: 1,
-    title: "→ URL Shortener - Microservice Architecture",
-    status: "Status: In Progress (April 2025 - Present)",
-    description: "Scalable microservices-based URL shortener with Spring Boot",
-    techStack: ["Spring Boot", "Docker", "Redis", "MySQL", "Terraform", "Jenkins", "AWS ECS"],
-    details: [
-      "Redis caching for optimized URL redirection",
-      "AWS ECS Fargate deployment with ALB & Route 53",
-      "CloudWatch integration for real-time monitoring"
-    ]
-  },
-  {
-    id: 2,
-    title: "→ Cloud-Native Backend Web Application",
-    status: "Completed: January - April 2025",
-    description: "Secure & scalable backend with automated infrastructure",
-    techStack: ["Spring Boot", "MySQL", "Packer", "AWS", "Terraform", "GitHub Actions"],
-    details: [
-      "99% uptime post-deployment",
-      "40% reduction in provisioning time with Packer",
-      "60% less IaC duplication using Terraform modules",
-      "AWS Secrets Manager for credential management"
-    ]
-  },
-  {
-    id: 3,
-    title: "→ Roomies Radar",
-    status: "Northeastern University | October - December 2024",
-    description: "Comprehensive platform connecting individuals for compatible roommates and rental accommodations",
-    techStack: ["React.js", "Node.js", "MongoDB", "TypeScript", "PWA", "JWT", "Bitbucket"],
-    details: [
-      "Leveraged Domain-Driven Design (DDD) principles for robust domain modeling",
-      "JWT-based secure authentication and user registration system",
-      "Sophisticated roommate matching based on preferences (gender, food habits, room type)",
-      "Property listings with photos, amenities, and availability details",
-      "Progressive Web App (PWA) for cross-device accessibility and performance",
-      "Internationalization (i18n) support for global users",
-      "Premium membership integration with additional features"
-    ]
-  },
-  {
-    id: 4,
-    title: "→ Attendance Marking System using Face Recognition & AWS",
-    status: "KL University | December 2022 - February 2023",
-    description: "Automated facial recognition attendance system leveraging AWS cloud computing",
-    techStack: ["AWS", "Amazon S3", "OpenCV", "Python", "Boto3", "Machine Learning"],
-    details: [
-      "Real-time facial detection and recognition using OpenCV",
-      "AWS S3 integration for secure image storage and processing",
-      "Boto3 for seamless AWS cloud services integration",
-      "Pre-registered facial data matching for accurate identification",
-      "Automated attendance marking upon successful recognition",
-      "Streamlined and secured attendance-taking process",
-      "GitHub: Saikalyan11/Attendance-marking-system-using-Face-recogniton-and-Cloud-computing"
-    ]
-  }
-];
-
-const skills = [
-  {
-    id: 1,
-    category: "Cloud Platforms",
-    name: "AWS",
-    percentage: 90,
-    visualBar: "█████████░",
-    details: "EC2, S3, IAM, Lambda, RDS, VPC, Route 53, ECS, EKS"
-  },
-  {
-    id: 2,
-    category: "Infrastructure as Code",
-    name: "Terraform",
-    percentage: 90,
-    visualBar: "█████████░",
-    details: "Remote state, Reusable modules, Workspaces"
-  },
-  {
-    id: 3,
-    category: "Containerization & Orchestration",
-    name: "Docker/Kubernetes",
-    percentage: 80,
-    visualBar: "████████░░",
-    details: "Docker, Kubernetes, Helm"
-  },
-  {
-    id: 4,
-    category: "CI/CD & Automation",
-    name: "GitHub Actions/Jenkins",
-    percentage: 90,
-    visualBar: "█████████░",
-    details: "GitHub Actions, Jenkins, Bash, ArgoCD"
-  }
-];
-
-const experience = [
-  {
-    id: 1,
-    title: "→ Lead Flutter Developer (Part-time)",
-    status: "Built-in Tech (Startup) | February 2023 - May 2023",
-    details: [
-      "Introduced GitHub-based workflows (PRs, branching strategies)",
-      "Reduced merge conflicts by 40% through improved collaboration",
-      "Led cross-functional team of 3 developers",
-      "Defined technical roadmap for mobile development"
-    ]
-  }
-];
-
-const education = [
-  {
-    id: 1,
-    title: "→ Master of Science in Software Engineering Systems",
-    status: "Northeastern University, Boston, MA",
-    subtitle: "September 2024 - 2026 (Expected)",
-    details: [
-      "Program Structures and Algorithms",
-      "Network Structures and Cloud Computing",
-      "Data Management and Database Design",
-      "Web Design/User Experience",
-      "Concepts of Object Oriented Design"
-    ]
-  },
-  {
-    id: 2,
-    title: "→ Bachelor of Technology in ECE",
-    status: "K L University, Hyderabad, India",
-    subtitle: "June 2021 - April 2024",
-    details: ["Final Project: Face Recognition System using AWS"]
-  }
-];
 
 export default App;
