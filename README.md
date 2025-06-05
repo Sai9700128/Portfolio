@@ -130,7 +130,10 @@ yarn build
 ```
 terminal-portfolio/
 ├── src/
+<<<<<<< HEAD
 │   ├── components/
+=======
+>>>>>>> 999158c (README.md)
 │   ├── App.jsx          # Main React component
 │   ├── App.css          # Terminal styling
 │   └── main.jsx         # Application entry point
