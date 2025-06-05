@@ -65,15 +65,15 @@ const App = () => {
           </div>
           <div style="margin-bottom: 5px;">
             <span style="display: inline-block; width: 250px;">terraform-infrastructure</span>
-            <span class="success">Up 2 years (S3, DynamoDB, Modules)</span>
+            <span class="success">Up 8 months (S3, DynamoDB, Modules)</span>
           </div>
           <div style="margin-bottom: 5px;">
             <span style="display: inline-block; width: 250px;">kubernetes-orchestration</span>
-            <span class="success">Up 18 months (Helm charts ready)</span>
+            <span class="success">Up 4 months (Helm charts ready)</span>
           </div>
           <div style="margin-bottom: 5px;">
             <span style="display: inline-block; width: 250px;">cicd-pipelines</span>
-            <span class="success">Up 12 months (GitHub Actions, Jenkins)</span>
+            <span class="success">Up 8 months (GitHub Actions, Jenkins)</span>
           </div>
           <div style="margin-bottom: 5px;">
             <span style="display: inline-block; width: 250px;">monitoring-stack</span>
@@ -81,7 +81,7 @@ const App = () => {
           </div>
           <div style="margin-bottom: 5px;">
             <span style="display: inline-block; width: 250px;">version-control-collab</span>
-            <span class="success">Up 2 years (Git, GitHub, BitBucket)</span>
+            <span class="success">Up 3 years (Git, GitHub, BitBucket)</span>
           </div>`,
           'html'
         );
