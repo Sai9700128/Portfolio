@@ -25,9 +25,9 @@ jobs:
         run: npm --version
 
       - name: install dependencies
-        run: cd Client
-          npm install
+        run: npm install
+        working-directory: Client
 
       - name: Install build
-        run: cd Client
-          npm run build
+        run: npm run build
+        working-directory: Client
