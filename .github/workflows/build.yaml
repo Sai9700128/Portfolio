@@ -1,0 +1,31 @@
+name: Portfolio Website Build
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout code
+        uses: action/checkout@v2
+
+      - name: setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - name: check node version
+        run: node --version
+
+      - name: check npm version
+        run: npm --version
+
+      - name: install dependencies
+        run: npm install
+
+      - name: Install build
+        run: npm run build
