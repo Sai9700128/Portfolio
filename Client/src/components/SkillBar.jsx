@@ -1,7 +1,6 @@
 import React from 'react';
-import './Cards.css';
 
-const SkillBar = ({ skill }) => (
+export const SkillBar = ({ skill }) => (
   <div className="project-card">
     <div className="highlight">{skill.category}</div>
     <div>
@@ -19,4 +18,3 @@ const SkillBar = ({ skill }) => (
   </div>
 );
 
-export default SkillBar;
