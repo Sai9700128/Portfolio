@@ -41,9 +41,17 @@ body {
   transition: all 0.3s ease;
 }
 
-.terminal-button.red { background: #ff5f56; }
-.terminal-button.yellow { background: #ffbd2e; }
-.terminal-button.green { background: #27c93f; }
+.terminal-button.red {
+  background: #ff5f56;
+}
+
+.terminal-button.yellow {
+  background: #ffbd2e;
+}
+
+.terminal-button.green {
+  background: #27c93f;
+}
 
 .terminal-button:hover {
   transform: scale(1.2);
@@ -66,7 +74,8 @@ body {
   min-height: 600px;
   max-height: 80vh;
   overflow-y: auto;
-  position: relative; /* This is crucial for absolute positioning of children */
+  position: relative;
+  /* This is crucial for absolute positioning of children */
 }
 
 .terminal-body::before {
@@ -76,21 +85,24 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: 
-    repeating-linear-gradient(
-      0deg,
+  background:
+    repeating-linear-gradient(0deg,
       transparent,
       transparent 2px,
       rgba(0, 255, 65, 0.03) 2px,
-      rgba(0, 255, 65, 0.03) 4px
-    );
+      rgba(0, 255, 65, 0.03) 4px);
   pointer-events: none;
   animation: scan 8s linear infinite;
 }
 
 @keyframes scan {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(20px); }
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(20px);
+  }
 }
 
 /* Pipeline Section */
@@ -177,13 +189,16 @@ body {
 }
 
 @keyframes pulse {
-  0%, 100% { 
-    opacity: 1; 
-    box-shadow: 0 0 0 0 rgba(0, 255, 65, 0.7); 
+
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(0, 255, 65, 0.7);
   }
-  50% { 
-    opacity: 0.7; 
-    box-shadow: 0 0 0 10px rgba(0, 255, 65, 0); 
+
+  50% {
+    opacity: 0.7;
+    box-shadow: 0 0 0 10px rgba(0, 255, 65, 0);
   }
 }
 
@@ -194,11 +209,12 @@ body {
 }
 
 @keyframes typeIn {
-  from { 
+  from {
     opacity: 0;
     transform: translateX(-10px);
   }
-  to { 
+
+  to {
     opacity: 1;
     transform: translateX(0);
   }
@@ -242,8 +258,13 @@ body {
 }
 
 @keyframes glow {
-  from { text-shadow: 0 0 5px #64ffda; }
-  to { text-shadow: 0 0 20px #64ffda, 0 0 30px #64ffda; }
+  from {
+    text-shadow: 0 0 5px #64ffda;
+  }
+
+  to {
+    text-shadow: 0 0 20px #64ffda, 0 0 30px #64ffda;
+  }
 }
 
 .input-line {
@@ -274,27 +295,44 @@ body {
 }
 
 @keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
+
+  0%,
+  50% {
+    opacity: 1;
+  }
+
+  51%,
+  100% {
+    opacity: 0;
+  }
 }
 
 .help-hint {
-  position: fixed; /* Changed from absolute to fixed */
+  position: fixed;
+  /* Changed from absolute to fixed */
   bottom: 40px;
   right: 40px;
   color: #64ffda;
   opacity: 0.6;
   font-size: 12px;
   animation: pulseHint 2s infinite;
-  background: rgba(13, 17, 23, 0.8); /* Add background for better visibility */
+  background: rgba(13, 17, 23, 0.8);
+  /* Add background for better visibility */
   padding: 8px 12px;
   border-radius: 4px;
   border: 1px solid #2a3f5f;
 }
 
 @keyframes pulseHint {
-  0%, 100% { opacity: 0.6; }
-  50% { opacity: 1; }
+
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+
+  50% {
+    opacity: 1;
+  }
 }
 
 .project-card {
@@ -339,22 +377,27 @@ body {
   left: 0;
   bottom: 0;
   right: 0;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.4),
-    transparent
-  );
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent);
   animation: shimmer 2s infinite;
 }
 
 @keyframes shimmer {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 @keyframes load {
-  from { width: 0; }
+  from {
+    width: 0;
+  }
 }
 
 .tech-stack {
@@ -431,12 +474,12 @@ body {
   .terminal-container {
     padding: 10px;
   }
-  
+
   .pipeline {
     flex-direction: column;
     align-items: center;
   }
-  
+
   .pipeline::before {
     width: 4px;
     height: 100%;
@@ -444,16 +487,16 @@ body {
     left: 50%;
     transform: translateX(-50%);
   }
-  
+
   .stage {
     flex: 0 0 auto;
     width: 200px;
   }
-  
+
   .contact-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .help-hint {
     display: none;
   }
@@ -464,8 +507,44 @@ body {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* Bounce animation for scroll indicator - adjusted for left side */
+@keyframes bounce {
+
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+
+  40% {
+    transform: translateY(-10px);
+  }
+
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Optional: Add a fade-in animation for the scroll indicator */
+.scroll-indicator {
+  animation: bounce 2s infinite, fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 0.9;
   }
 }

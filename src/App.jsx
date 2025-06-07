@@ -17,6 +17,8 @@ const App = () => {
   const [welcomeShown, setWelcomeShown] = useState(false);
   const [commandHistory, setCommandHistory] = useState([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
+  const [showScrollIndicator, setShowScrollIndicator] = useState(false);
+  const [hasUserScrolled, setHasUserScrolled] = useState(false);
   const inputRef = useRef(null);
   const terminalBodyRef = useRef(null);
 
@@ -24,6 +26,52 @@ const App = () => {
   useEffect(() => {
     inputRef.current?.focus();
   }, []);
+
+  // Show scroll indicator initially after content loads and terminal is scrolled down
+  useEffect(() => {
+    const checkForScroll = () => {
+      if (terminalBodyRef.current && !hasUserScrolled) {
+        const { scrollHeight, clientHeight } = terminalBodyRef.current;
+        // First scroll to bottom to show all initial content
+        terminalBodyRef.current.scrollTop = terminalBodyRef.current.scrollHeight;
+
+        // Then check if there's content to scroll back up
+        if (scrollHeight > clientHeight) {
+          // Small delay to ensure scroll completes before showing indicator
+          setTimeout(() => {
+            setShowScrollIndicator(true);
+          }, 100);
+        }
+      }
+    };
+
+    // Run check after terminal history updates
+    checkForScroll();
+  }, [terminalHistory, hasUserScrolled]);
+
+  // Hide scroll indicator once user scrolls
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!hasUserScrolled && terminalBodyRef.current) {
+        const { scrollTop } = terminalBodyRef.current;
+        if (scrollTop > 5) { // User has scrolled
+          setHasUserScrolled(true);
+          setShowScrollIndicator(false);
+        }
+      }
+    };
+
+    const terminal = terminalBodyRef.current;
+    if (terminal) {
+      terminal.addEventListener('scroll', handleScroll);
+    }
+
+    return () => {
+      if (terminal) {
+        terminal.removeEventListener('scroll', handleScroll);
+      }
+    };
+  }, [hasUserScrolled]);
 
   // Scroll to bottom when history updates
   useEffect(() => {
@@ -158,8 +206,8 @@ const App = () => {
         addToHistory(
           <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
             <div style={{
-              width: '120px',
-              height: '120px',
+              width: '180px',
+              height: '180px',
               borderRadius: '10px',
               overflow: 'hidden',
               border: '2px solid #64ffda',
@@ -176,7 +224,7 @@ const App = () => {
                 }}
                 onError={(e) => {
                   e.target.style.display = 'none';
-                  e.target.parentElement.innerHTML = '<div style="width: 100%; height: 100%; background: linear-gradient(135deg, #64ffda, #4CAF50); display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold; color: #0d1117;">SK</div>';
+                  e.target.parentElement.innerHTML = '<div style="width: 100%; height: 100%; background: linear-gradient(135deg, #64ffda, #4CAF50); display: flex; align-items: center; justify-content: center; font-size: 40px; font-weight: bold; color: #0d1117;">SK</div>';
                 }}
               />
             </div>
@@ -536,8 +584,8 @@ const App = () => {
         <div className="output">
           <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
             <div style={{
-              width: '120px',
-              height: '120px',
+              width: '180px',
+              height: '180px',
               borderRadius: '10px',
               overflow: 'hidden',
               border: '2px solid #64ffda',
@@ -554,7 +602,7 @@ const App = () => {
                 }}
                 onError={(e) => {
                   e.target.style.display = 'none';
-                  e.target.parentElement.innerHTML = '<div style="width: 100%; height: 100%; background: linear-gradient(135deg, #64ffda, #4CAF50); display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold; color: #0d1117;">SK</div>';
+                  e.target.parentElement.innerHTML = '<div style="width: 100%; height: 100%; background: linear-gradient(135deg, #64ffda, #4CAF50); display: flex; align-items: center; justify-content: center; font-size: 40px; font-weight: bold; color: #0d1117;">SK</div>';
                 }}
               />
             </div>
@@ -668,6 +716,42 @@ const App = () => {
         }}>
           Try commands: ls skills | ls projects | ls experience | ls certifications | ls pipeline | ls contact| pwd
         </div>
+
+        {/* Scroll Indicator */}
+        {showScrollIndicator && (
+          <div
+            className="scroll-indicator"
+            style={{
+              position: 'fixed',
+              bottom: '30px',
+              left: '30px',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              color: '#64ffda',
+              opacity: 0.9,
+              cursor: 'pointer',
+              animation: 'bounce 2s infinite',
+              zIndex: 1000,
+              background: 'rgba(13, 17, 23, 0.95)',
+              padding: '10px 15px',
+              borderRadius: '6px',
+              border: '1px solid #64ffda',
+              boxShadow: '0 0 15px rgba(100, 255, 218, 0.3)'
+            }}
+            onClick={() => {
+              terminalBodyRef.current?.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+              });
+              setHasUserScrolled(true);
+              setShowScrollIndicator(false);
+            }}
+          >
+            <div style={{ fontSize: '24px', marginBottom: '4px' }}>↑</div>
+            <span style={{ fontSize: '14px', fontWeight: '500' }}>Scroll up</span>
+          </div>
+        )}
       </TerminalBody>
     </div>
   );
