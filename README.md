@@ -76,43 +76,38 @@ The project includes a robust CI/CD pipeline using GitHub Actions:
 
 ```yaml
 # .github/workflows/ci-cd.yml
-name: CI/CD Pipeline
+name: Portfolio Website Build
 
 on:
-  push:
-    branches: [main]
   pull_request:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
-  test-and-build:
+  build:
     runs-on: ubuntu-latest
-    
+
     steps:
-      - uses: actions/checkout@v3
-      
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - name: checkout code
+        uses: actions/checkout@v4
+
+      - name: setup node
+        uses: actions/setup-node@v2
         with:
-          node-version: '18'
-          
-      - name: Install dependencies
-        run: npm ci
-        
-      - name: Run linter
-        run: npm run lint
-        
-      - name: Run tests
-        run: npm test
-        
-      - name: Build project
+          node-version: 14
+
+      - name: check node version
+        run: node --version
+
+      - name: check npm version
+        run: npm --version
+
+      - name: install dependencies
+        run: npm install
+
+      - name: Install build
         run: npm run build
-        
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: dist
-          path: dist/
+
 ```
 
 #### Pipeline Features:
